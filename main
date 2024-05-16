@@ -1,0 +1,15 @@
+final_data = data.query('ceiling_height >= 2.4 & ceiling_height <= 4 \
+                        & total_area > 20 & total_area < 250 \
+                        & days_exposition > 3 & days_exposition < 1200 \
+                        & last_price > 0.56 & last_price < 58 \
+                        & living_area > 10 & living_area < 160 \
+                        & kitchen_area > 4 & kitchen_area < 43 \
+                        & rooms < 6 & floor < 24 & floors_total < 27 \
+                        | ceiling_height.isna() | days_exposition.isna() | living_area.isna() | kitchen_area.isna()')
+
+(
+   final_data[['rooms', 'total_area', 'ceiling_height', 'days_exposition', 'last_price', 'living_area',  'kitchen_area',
+          'floor', 'floors_total']]
+    .apply (['count', 'min', 'max', 'median'])   
+    .style.format("{:,.2f}")
+)
